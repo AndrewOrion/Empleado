@@ -3,49 +3,75 @@ package clases;
 public class  Comercial extends Empleado{
 	
 	private int numVentas;
-	static double impVenta=45.90;
+	public static final double impVenta=45.90;//para q no varie
+	int ventaTotal=0;
 
-	public Comercial(Empleado emp) {
-		super(emp);
+	/*constructor vacio con numVentas a 0
+	 * 
+	 */
+	public Comercial() {
+		super();
 		numVentas=0;
 	}
 
+	//constructor con parametros
 	public Comercial(String nombre, String apellido, int edad, double salario, 
-			int antigüedad, int numVentas) {
-		super(nombre, apellido, edad, salario, antigüedad);
-		this.numVentas=numVentas;
+			int antiguedad) {
+		super(nombre, apellido, edad, salario, antiguedad);
+		this.numVentas=0;
+	}
+	
+	
+	/*Constructor de copia
+	 * le paso lo que empleado no tiene, que es numVentas
+	 */
+	public Comercial(Comercial emp) {
+		super(emp);
+		this.numVentas=emp.numVentas;
 	}
 
 	@Override
 	public String toString() {
-		return "Comercial [numVentas=" + numVentas + ", nombre=" + nombre + ", apellido=" + apellido + ", edad=" + edad
-				+ ", salario=" + salario + ", antigüedad=" + antigüedad + "]";
+		return "Comercial: \n"+nombre + " "+ apellido + "\n"+ edad + " aÃ±os" + "\n" + "Salario= "
+				+ salario + "\nVentas= " + numVentas + "\nAntigÃ¼edad= " + antiguedad;
 	}
 	
-	public int contabilizaVentas(int numVentas) {
-		int ventaTotal=0;
+	public int getNumVentas() {//numVentas esta protected asi puedo devolverlo
+		return numVentas;
+	}
+	
+	public void contabilizaVentas(int ventasDia) {	
+		if (ventasDia>7) { 
+			ventasDia=7;
+		}
+		this.numVentas=this.numVentas+ventasDia;
 		
-		if (numVentas>7) 
-			numVentas=7;
-		if (ventaTotal<25) 
-			ventaTotal=ventaTotal+numVentas;
-		else 
-			ventaTotal=25;
+		if (this.numVentas>25) { 
+			this.numVentas=25;
+		}
 		
-		return ventaTotal;
-			
 	}
 	
 	public void reseteaContadorVentas() {
-		contabilizaVentas(0);
+		this.numVentas=0;
 	}
 
 	@Override
 	public double calculaSalario() {
-		
-		double ventas=contabilizaVentas(numVentas)*45.90;
+		double ventas=getNumVentas()*45.90;
 		return ventas+super.calculaSalario();
 	}
 
+	
+
+	public static double getImpVenta() {
+		return impVenta;
+	}
+
+	public int getVentaTotal() {
+		return ventaTotal;
+	}
+
+	
 	
 }

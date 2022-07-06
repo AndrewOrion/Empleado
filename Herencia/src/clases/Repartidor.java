@@ -12,12 +12,12 @@ public class Repartidor extends Empleado{
 	}
 
 	public Repartidor(String nombre, String apellido, int edad, double salario, int antigüedad, 
-			String zona, String matricula, double kMInicioMes, double kMFinales) {
+			String zona, String matricula, double KMInicioMes, double KMFinales) {
 		super(nombre, apellido, edad, salario, antigüedad);
 		this.zona = zona;
 		this.matricula = matricula;
-		KMInicioMes = KMInicioMes;
-		KMFinales = KMFinales;
+		this.KMInicioMes = KMInicioMes;
+		this.KMFinales = KMFinales;
 	}
 
 	public Repartidor (Repartidor rep) {
@@ -30,9 +30,9 @@ public class Repartidor extends Empleado{
 
 	@Override
 	public String toString() {
-		return "Repartidor [zona=" + zona + ", matricula=" + matricula + ", KMInicioMes=" + KMInicioMes + ", KMFinales="
-				+ KMFinales + ", dietas=" + dietas + ", nombre=" + nombre + ", apellido=" + apellido + ", edad=" + edad
-				+ ", salario=" + salario + ", antigüedad=" + antigüedad + "]";
+		return "Repartidor: \n"+nombre + " " + apellido + "\n" + edad + " años\nSalario: " + salario 
+				+ "\nMatricula: " + matricula + "\nKM iniciales: " + KMInicioMes + " / KM finales: "
+				+ KMFinales + "\nDietas=" + dietas + "\nZona: " + zona + "\nAntigüedad: " + antiguedad;
 	}
 
 	public String getZona() {
@@ -69,14 +69,22 @@ public class Repartidor extends Empleado{
 
 	@Override
 	public double calculaSalario() {
-		
-		double total=super.calculaSalario()+dietas+0.45*(KMFinales-KMInicioMes);
-		
+		double total=super.calculaSalario()+dietas+0.45*(KMFinales-KMInicioMes)-calculaTrienios();
 		return total;
 	}
-	
-	
 
+	public double getKMInicioMes() {
+		return KMInicioMes;
+	}
+
+	public double getKMFinales() {
+		return KMFinales;
+	}
+
+	public double getDietas() {
+		return dietas;
+	}
+	
 }
 	
 	
