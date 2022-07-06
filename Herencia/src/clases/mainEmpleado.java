@@ -13,7 +13,7 @@ public class mainEmpleado {
 		
 		
 		
-		Repartidor emp2 = new Repartidor("Ana","Pérez Gómez", 46,2200,4,"Centro","8123JGT",0,250);
+		Repartidor emp2 = new Repartidor("Ana","Pérez Gómez", 46,2200,4,"Centro","8123JGT",0,250, 0);
 		
 		System.out.println("-------------------------------");
 		System.out.println("-------------------------------");
